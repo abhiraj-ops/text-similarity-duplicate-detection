@@ -1,11 +1,9 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from app.core.preprocessing import preprocess
-from app.config import (
-    SIMILARITY_THRESHOLD_DUPLICATE,
-    SIMILARITY_THRESHOLD_SIMILAR,
-)
+
+SIMILARITY_THRESHOLD_DUPLICATE = 0.80
+SIMILARITY_THRESHOLD_SIMILAR = 0.50
 
 _vectorizer = TfidfVectorizer()
 
@@ -19,17 +17,25 @@ def classify(score: float) -> str:
     return "Different"
 
 
+def preprocess(text: str) -> str:
+    """Basic text preprocessing."""
+    import re
+    if not text:
+        return ""
+    text = text.lower()
+    text = re.sub(r'[^a-zA-Z\s]', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
+
 def compute_similarity(text1: str, text2: str) -> float:
     """Compute cosine similarity (0 to 1) between two text strings."""
     if not text1 or not text2:
         return 0.0
-
     p1 = preprocess(text1)
     p2 = preprocess(text2)
-
     if not p1 or not p2:
         return 0.0
-
     tfidf_matrix = _vectorizer.fit_transform([p1, p2])
     similarity = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
     return float(similarity)
@@ -41,17 +47,9 @@ def compare_with_label(text1: str, text2: str):
     return score, classify(score)
 
 
-def batch_compare(reference: str, candidates: list):
-    """Compare a reference text against many candidates. Returns sorted results."""
-    results = []
-    for candidate in candidates:
-        score, label = compare_with_label(reference, candidate)
-        results.append(
-            {
-                "candidate": candidate,
-                "score": round(score, 4),
-                "label": label,
-            }
-        )
-    results.sort(key=lambda x: x["score"], reverse=True)
-    return results
+# Test similarity
+t1 = "What is the capital of France?"
+t2 = "What is the capital city of France?"
+score, label = compare_with_label(t1, t2)
+print(f"Score: {score:.4f}")
+print(f"Label: {label}")
