@@ -117,7 +117,6 @@ This project aims to address this problem by building an intelligent text simila
 | Scikit-learn          | TF-IDF and similarity algorithms                  |
 | Pandas                | Dataset handling                                  |
 | NumPy                 | Numerical operations                              |
-| Streamlit             | Interactive user interface                        |
 | Matplotlib            | Data visualization                                |
 | Pytest                | Software testing                                  |
 | Git & GitHub          | Version control and collaboration                 |
@@ -134,9 +133,6 @@ text-similarity-duplicate-detection/
 │   │   ├── __init__.py
 │   │   ├── preprocessing.py
 │   │   └── similarity.py
-│   └── ui/
-│       ├── __init__.py
-│       └── streamlit_app.py
 │
 ├── data/
 │   ├── raw/
@@ -221,10 +217,10 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 6: Run Application
+### Step 6: Run NLP Module
 
 ```bash
-streamlit run app/ui/streamlit_app.py
+python -c "from app.core.similarity import compute_similarity; print(compute_similarity('text1', 'text2'))"
 ```
 
 ## 🧪 9. Testing and Evaluation
@@ -254,7 +250,6 @@ The evaluation process will help identify weaknesses in retrieval quality and an
 - [X] Cosine similarity implementation
 - [X] Duplicate detection logic
 - [X] Similarity classification
-- [X] Streamlit frontend development
 - [X] Testing and evaluation
 - [X] Final documentation and deployment
 
