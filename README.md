@@ -276,9 +276,9 @@ Potential future improvements include:
 
 | Contributor | Role |
 |-------------|------|
-| Anirudh Core | Preprocessing |
-| Aaditya Core | Similarity |
-| Anshuman Core | Streamlit UI |
+| Anirudh Core | Frontend |
+| Aaditya Core | Backend |
+| Anshuman Core | NLP Core & Testing |
 
 ## 📄 13. License
 
