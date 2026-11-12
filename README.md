@@ -1,37 +1,170 @@
 # 🔍 Text Similarity & Duplicate Detection
 
-> A complete, runnable NLP application that compares two sentences/questions and detects whether they are **Duplicate**, **Similar**, or **Different**.
+> **Your University's Knowledge, One Conversation Away.**
 
-Built with **Python**, **NLTK**, **scikit-learn (TF-IDF + Cosine Similarity)**, **pandas**, and **Streamlit**.
+Text Similarity & Duplicate Detection is a Natural Language Processing (NLP) application designed to compare two sentences or questions and identify how similar their meanings are.
+
+The system processes user-provided text, converts it into numerical representations, and calculates similarity scores using NLP and machine learning techniques.
+
+It aims to identify exact duplicates, semantically similar questions, and completely different text inputs.
 
 ---
 
-## 📁 Project Structure
+## 📌 1. Problem Statement
+
+University students frequently struggle to find accurate academic information because it is distributed across multiple documents, PDF files, notices, and university portals.
+
+Finding a specific piece of information often requires students to manually open several documents, search through multiple pages, and identify the relevant information themselves.
+
+Traditional keyword-based searching may also fail when students phrase their questions differently from the wording used in official documents.
+
+This project aims to address this problem by building an intelligent text similarity system that understands natural language queries and identifies duplicate or semantically similar content using Natural Language Processing techniques.
+
+## 🎯 2. Project Objectives
+
+- Develop an NLP-based text similarity application.
+- Collect and process sentence/question datasets.
+- Perform text cleaning and preprocessing.
+- Convert text into numerical representations.
+- Implement TF-IDF vectorization.
+- Calculate similarity using Cosine Similarity.
+- Detect duplicate and semantically similar questions.
+- Display similarity scores through an interactive interface.
+- Evaluate the system using unseen text examples.
+
+## ✨ 3. Planned Features
+
+| Feature                       | Description                                                  |
+| ----------------------------- | ------------------------------------------------------------ |
+| Dual Text Input               | Enter two sentences or questions                             |
+| Text Preprocessing            | Clean and normalize extracted text                           |
+| TF-IDF Vectorization          | Convert text into numerical vectors                          |
+| Similarity Calculation        | Calculate cosine similarity                                  |
+| Duplicate Detection           | Identify duplicate questions                                 |
+| Similarity Classification     | Classify text as Duplicate, Similar or Different             |
+| Similarity Score              | Display a percentage-based score                             |
+| Interactive Chat Interface    | Allow users to communicate naturally with the assistant      |
+| Source Citations              | Display document names and page references                   |
+| Hallucination Control         | Handle questions when supporting information is unavailable  |
+
+*These features are planned and will be implemented incrementally.*
+
+## 🧠 4. NLP Concepts Used
+
+- Text Preprocessing
+- Tokenization
+- Lowercase Normalization
+- Stopword Removal
+- Stemming and Lemmatization
+- Feature Extraction
+- TF-IDF Vectorization
+- Cosine Similarity
+- Semantic Similarity
+- Duplicate Detection
+- Model Evaluation
+
+## ⚙️ 5. System Architecture
+
+### Text Comparison Pipeline
+
+1. **User Input:** Accept two sentences or questions.
+2. **Text Cleaning:** Remove unnecessary characters and normalize text.
+3. **Tokenization:** Break sentences into individual tokens.
+4. **Feature Extraction:** Convert text into numerical vectors using TF-IDF.
+5. **Similarity Calculation:** Calculate cosine similarity between vectors.
+6. **Classification:** Determine whether the text is duplicate, similar, or different.
+7. **Result Display:** Show similarity score and classification.
+
+### Architecture Overview
+
+```text
+       USER INPUT
+      (Two Sentences)
+             |
+             v
+      TEXT PREPROCESSING
+             |
+             v
+       TOKENIZATION
+             |
+             v
+      TF-IDF VECTORIZATION
+             |
+             v
+     COSINE SIMILARITY
+             |
+             v
+     DUPLICATE DETECTION
+             |
+             v
+     RESULT CLASSIFICATION
+             |
+       +-----+-----+
+       |     |     |
+       v     v     v
+    DUPLICATE SIMILAR DIFFERENT
+             |
+             v
+      STREAMLIT DASHBOARD
+```
+
+## 🛠️ 6. Technology Stack
+
+| Technology            | Purpose                                           |
+| --------------------- | ------------------------------------------------- |
+| Python                | Core programming language                         |
+| NLTK                  | Natural Language Processing                       |
+| Scikit-learn          | TF-IDF and similarity algorithms                  |
+| Pandas                | Dataset handling                                  |
+| NumPy                 | Numerical operations                              |
+| Streamlit             | Interactive user interface                        |
+| Matplotlib            | Data visualization                                |
+| Pytest                | Software testing                                  |
+| Git & GitHub          | Version control and collaboration                 |
+
+## 📁 7. Project Structure
 
 ```text
 text-similarity-duplicate-detection/
 │
 ├── app/
 │   ├── __init__.py
-│   ├── config.py             # thresholds, paths, NLTK settings
+│   ├── config.py
 │   ├── core/
 │   │   ├── __init__.py
-│   │   ├── preprocessing.py  # text cleaning, tokenization, stopword removal, lemmatization
-│   │   └── similarity.py     # TF-IDF vectorization, cosine similarity, classification
+│   │   ├── preprocessing.py
+│   │   └── similarity.py
 │   └── ui/
 │       ├── __init__.py
-│       └── streamlit_app.py  # Streamlit dashboard
+│       └── streamlit_app.py
 │
 ├── data/
-│   └── sample_questions.csv  # sample question dataset for batch comparison
+│   ├── raw/
+│   ├── processed/
+│   └── sample_docs/
 │
+├── docs/
+│   ├── implementation.md
+│   ├── methodology.md
+│   ├── problem_statement.md
+│   ├── requirements.md
+│   ├── system_architecture.md
+│   ├── testing.md
+│   └── user_manual.md
+│
+├── scripts/
 ├── tests/
 │   ├── __init__.py
-│   └── test_similarity.py    # pytest unit tests
+│   └── test_similarity.py
 │
-├── notebooks/.gitkeep
-├── scripts/.gitkeep
-├── screenshots/.gitkeep
+├── notebooks/
+│   └── .gitkeep
+├── screenshots/
+│   └── .gitkeep
+│
+├── anirudh_core.ipynb
+├── aaditya_core.ipynb
+├── anshuman_core.ipynb
 │
 ├── .env.example
 ├── .gitignore
@@ -40,116 +173,120 @@ text-similarity-duplicate-detection/
 └── requirements.txt
 ```
 
----
-
-## 🚀 Installation & Setup (VS Code)
+## 🚀 8. Installation and Setup
 
 ### Prerequisites
+
+Make sure you have the following installed:
+
 - Python 3.10 or later
 - Git
-- VS Code (recommended)
+- pip
 
-### Step 1: Open the folder in VS Code
+### Step 1: Clone the Repository
+
 ```bash
-cd C:\Users\ABHISHEK\Documents\NewProject
-code .
+git clone https://github.com/abhiraj-ops/text-similarity-duplicate-detection.git
 ```
 
-### Step 2: Create a virtual environment
+### Step 2: Navigate to the Project
+
+```bash
+cd text-similarity-duplicate-detection
+```
+
+### Step 3: Create a Virtual Environment
+
 ```bash
 python -m venv .venv
 ```
 
-### Step 3: Activate the virtual environment
+### Step 4: Activate the Virtual Environment
 
-**Windows (PowerShell):**
+**Windows PowerShell:**
+
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-**Windows (CMD):**
-```cmd
-.venv\Scripts\activate.bat
-```
+**Linux / macOS:**
 
-**macOS / Linux:**
 ```bash
 source .venv/bin/activate
 ```
 
-### Step 4: Install dependencies
+### Step 5: Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 5: Run the application
+### Step 6: Run Application
+
 ```bash
 streamlit run app/ui/streamlit_app.py
 ```
 
-The app will open in your browser at `http://localhost:8501`.
+## 🧪 9. Testing and Evaluation
+
+The project will be evaluated using a collection of test questions and academic documents.
+
+Planned evaluation areas include:
+
+- Document extraction correctness
+- Text preprocessing correctness
+- Retrieval relevance
+- Recall@K
+- Mean Reciprocal Rank (MRR)
+- Answer correctness
+- Source citation correctness
+- Unsupported question handling
+- Response latency
+
+The evaluation process will help identify weaknesses in retrieval quality and answer generation.
+
+## 🗺️ 10. Development Roadmap
+
+- [X] Project planning and requirements analysis
+- [X] NLP fundamentals and methodology
+- [X] Text preprocessing implementation
+- [X] TF-IDF vectorization
+- [X] Cosine similarity implementation
+- [X] Duplicate detection logic
+- [X] Similarity classification
+- [X] Streamlit frontend development
+- [X] Testing and evaluation
+- [X] Final documentation and deployment
+
+## 🔮 11. Future Enhancements
+
+Potential future improvements include:
+
+- Sentence Transformers integration.
+- Advanced semantic similarity detection.
+- Multilingual text comparison.
+- Document-level duplicate detection.
+- Batch question comparison.
+- Duplicate detection dashboard.
+- API integration for external applications.
+
+## 👥 12. Contributors
+
+**Project:** Text Similarity & Duplicate Detection
+
+| Contributor | Role |
+|-------------|------|
+| Anirudh Core | Preprocessing |
+| Aaditya Core | Similarity |
+| Anshuman Core | Streamlit UI |
+
+## 📄 13. License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
-
-## 🧪 Running Tests
-
-```bash
-pytest
-```
-
-Tests cover:
-- Identical text → score 1.0
-- Different text → low score
-- Empty text → score 0.0
-- Classification thresholds (Duplicate / Similar / Different)
-
----
-
-## 🎯 How It Works
-
-| Step | Description |
-|------|-------------|
-| 1 | User enters two sentences/questions |
-| 2 | Text is cleaned (lowercase, remove special characters) |
-| 3 | Text is tokenized into words |
-| 4 | Stopwords are removed |
-| 5 | Words are lemmatized to root form |
-| 6 | TF-IDF converts text into numerical vectors |
-| 7 | Cosine similarity is calculated (0 to 1) |
-| 8 | Result is classified as Duplicate / Similar / Different |
-
-**Classification thresholds:**
-- **Duplicate:** score ≥ 0.80 (🔴)
-- **Similar:** score ≥ 0.50 (🟡)
-- **Different:** score < 0.50 (🟢)
-
----
-
-## 👥 Team Workflow (3 Members)
-
-This project is set up so multiple members can commit code:
-
-1. **Member 1** — works on `app/core/preprocessing.py`
-2. **Member 2** — works on `app/core/similarity.py`
-3. **Member 3** — works on `app/ui/streamlit_app.py`
-
-Each member:
-1. Creates their own branch: `git checkout -b feature/member-name`
-2. Makes changes and commits: `git add . && git commit -m "..."`
-3. Pushes to GitHub: `git push origin feature/member-name`
-4. Opens a Pull Request to merge into `main`
-
-**Do not push to GitHub yet** — finish local development first, then push when ready.
-
----
-
-## 📄 License
-
-MIT License. See `LICENSE` for details.
-
----
-
 <p align="center">
-  <b>Text Similarity & Duplicate Detection</b><br>
-  Built with Python, NLTK, scikit-learn & Streamlit
+  <b>Text Similarity & Duplicate Detection</b>
+  <br/>
+  Built with Python, Natural Language Processing and Machine Learning.
 </p>
